@@ -1,20 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package client;
 
-/**
- *
- * @author Estudiantes
- */
-public class Client {
+import facade.Facade;
 
-    /**
-     * @param args the command line arguments
-     */
+public class Client {
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Obtener la única instancia de FileFacade utilizando el Singleton
+        Facade facade = Facade.getInstance();
+
+        String originalContent = "Este es el contenido original que se cifrará y luego se descifrará.";
+
+        // Escribir archivo cifrado
+        String filePath = "file.txt";
+        facade.writeEncryptedFile(filePath, originalContent);
+
+        // Leer y descifrar el archivo
+        String decryptedContent = facade.readDecryptedFile(filePath);
+        System.out.println("Contenido descifrado: " + decryptedContent);
     }
-    
 }
+
